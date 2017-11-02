@@ -447,7 +447,7 @@ export default {
     margin: 0;
   }
 
-  @media screen and (max-width: 720px) {
+  @media screen and (max-width: 860px) {
     .design-container {
       flex-direction: column;
     }
