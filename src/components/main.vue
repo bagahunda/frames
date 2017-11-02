@@ -304,6 +304,7 @@ export default {
   }
 
   .frames-container {
+    width: 380px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
@@ -316,8 +317,8 @@ export default {
   .frames-container label {
     display: block;
     padding: 5px;
-    width: 100%;
-    height: 100%;
+    width: 80px;
+    height: 80px;
     border-radius: 4px;
     border: 1px solid #eee;
   }
@@ -464,6 +465,12 @@ export default {
 
     .frames-container {
       width: 100%;
+      max-width: 380px;
+    }
+
+    .frames-container label {
+      width: 40px;
+      height: 40px;
     }
 
     .frame-checkbox {
