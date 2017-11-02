@@ -485,6 +485,7 @@ export default {
 
     .price .btn {
       margin-left: 0;
+      margin-top: 10px;
     }
   }
 
