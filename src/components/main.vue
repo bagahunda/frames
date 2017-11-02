@@ -304,10 +304,13 @@ export default {
   }
 
   .frames-container {
-    width: 380px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
+  }
+
+  .frame-checkbox {
+    width: calc((100% - 15px)/4)
   }
 
   .frames-container input[type="radio"] {
@@ -461,6 +464,14 @@ export default {
 
     .design-container__options {
       margin-top: 20px;
+    }
+
+    .frames-container {
+      width: 380px;
+    }
+
+    .frame-checkbox {
+      width: auto;
     }
   }
 
