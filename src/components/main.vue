@@ -476,6 +476,16 @@ export default {
     .frame-checkbox {
       width: calc((100% - 15px)/4)
     }
+
+    .price {
+      margin-top: 0;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .price .btn {
+      margin-left: 0;
+    }
   }
 
   /* range slider styles */
