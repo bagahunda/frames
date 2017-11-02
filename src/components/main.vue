@@ -4,7 +4,7 @@
       <div class='design-container__preview'>
         <div :class="[{'preview--mat': hasMat}, matClass, matColor, previewClass, frameWidthClass, matWidthClass, frameClass]">
           <div class='preview__image' :style="{ 'background-image': bg }" @click="onPickFile"></div>
-          <input type='file' ref='fileInput' accept='image/*' capture="filesystem" @change='onFilePicked'>
+          <input type='file' ref='fileInput' accept='image/*' @change='onFilePicked'>
         </div>
         <div class='frame-select'>
           <h3>Choose your frame</h3>
