@@ -454,6 +454,7 @@ export default {
 
     .design-container__preview,
     .design-container__options {
+      box-sizing: border-box;
       width: 100%;
       padding: 0 20px;
     }
