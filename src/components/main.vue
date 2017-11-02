@@ -3,8 +3,21 @@
     <div class='design-container'>
       <div class='design-container__preview'>
         <div :class="[{'preview--mat': hasMat}, matClass, matColor, previewClass, frameWidthClass, matWidthClass, frameClass]">
-          <div class='preview__image' :style="{ 'background-image': bg }" @click="onPickFile"></div>
-          <input type='file' ref='fileInput' accept='image/*' @change='onFilePicked'>
+          <picture-input
+            ref="pictureInput"
+            @change="onImageChange"
+            width="300"
+            height="400"
+            margin="0"
+            accept="image/jpeg,image/png"
+            size="10"
+            buttonClass="btn"
+            :customStrings="{
+              upload: '<h1>Bummer!</h1>',
+              drag: 'Drag a 😺 GIF or GTFO'
+            }">
+          </picture-input>
+
         </div>
         <div class='frame-select'>
           <h3>Choose your frame</h3>
@@ -101,8 +114,12 @@
 </template>
 
 <script>
+import PictureInput from 'vue-picture-input'
 export default {
   name: 'main',
+  components: {
+    PictureInput
+  },
   data () {
     return {
       frameWidth: '3',
@@ -173,17 +190,13 @@ export default {
     onPickFile () {
       this.$refs.fileInput.click()
     },
-    onFilePicked (event) {
-      const files = event.target.files
-      // let fileName = files[0].filename
-      // if (fileName.lastIndexOf('.') <= 0) {
-      //   return alert('Please choose a valid image!')
-      // }
-      const fileReader = new FileReader()
-      fileReader.addEventListener('load', () => {
-        this.bg = 'url(' + fileReader.result + ')'
-      })
-      fileReader.readAsDataURL(files[0])
+    onImageChange () {
+      console.log('New picture selected!')
+      if (this.$refs.pictureInput.image) {
+        console.log('Picture loaded.')
+      } else {
+        console.log('FileReader API not supported: use the <form>, Luke!')
+      }
     }
   },
   computed: {
