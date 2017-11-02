@@ -309,10 +309,6 @@ export default {
     justify-content: space-between;
   }
 
-  .frame-checkbox {
-    width: calc((100% - 15px)/4)
-  }
-
   .frames-container input[type="radio"] {
     display: none;
   }
@@ -467,11 +463,11 @@ export default {
     }
 
     .frames-container {
-      width: 380px;
+      width: 100%;
     }
 
     .frame-checkbox {
-      width: auto;
+      width: calc((100% - 15px)/4)
     }
   }
 
