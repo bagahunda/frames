@@ -447,6 +447,22 @@ export default {
     margin: 0;
   }
 
+  @media screen and (max-width: 720px) {
+    .design-container {
+      flex-direction: column;
+    }
+
+    .design-container__preview,
+    .design-container__options {
+      width: 100%;
+      padding: 0 20px;
+    }
+
+    .design-container__options {
+      margin-top: 20px;
+    }
+  }
+
   /* range slider styles */
 
   input[type=range] {
