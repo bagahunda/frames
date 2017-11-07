@@ -29,6 +29,13 @@ export default {
     color: #2c3e50;
   }
 
+  .container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 60px auto 0;
+    text-align: left;
+  }
+
   .btn {
     display: inline-block;
     padding: 0 30px;

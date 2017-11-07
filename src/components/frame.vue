@@ -1,5 +1,19 @@
 <template>
   <div class='main'>
+    <div class='container'>
+      <router-link class='back' to="/">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" aria-labelledby="title" aria-describedby="desc" role="img" xmlns:xlink="http://www.w3.org/1999/xlink" width="29" height="29">
+          <title>Arrow Left</title>
+          <desc>A line styled icon from Orion Library.</desc>
+          <path data-name="layer2"
+          fill="none" stroke="#202020" stroke-miterlimit="10" stroke-width="2" d="M14 31.998h36"
+          stroke-linejoin="miter" stroke-linecap="round"></path>
+          <path data-name="layer1" fill="none" stroke="#202020" stroke-miterlimit="10"
+          stroke-width="2" d="M28 18L14 32l14 14" stroke-linejoin="miter" stroke-linecap="round"></path>
+        </svg>
+        Back to start
+      </router-link>
+    </div>
     <div class='design-container'>
       <div class='design-container__preview'>
         <div :class="[{'preview--mat': hasMat}, matClass, matColor, previewClass, frameWidthClass, matWidthClass, frameClass]" :style="{width: width * 10 + 'px', height: height * 10 + 'px'}">
@@ -220,6 +234,15 @@ export default {
 </script>
 
 <style>
+
+  .back {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    font-weight: bold;
+  }
+
   .design-container {
     width: 100%;
     max-width: 1200px;
