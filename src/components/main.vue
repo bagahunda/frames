@@ -28,21 +28,26 @@
           </div>
           <div class='card__back'>
             <div class='frame-select__data'>
-              <button class='input-area' @click="setSize('10', '15')">
+              <input type='radio' name="size" id="size1" value="10x15" v-model="tempSize">
+              <label for="size1" class='input-area input-area--sizes'>
                 10 x 15
-              </button>
-              <button class='input-area' @click="setSize('15', '20')">
+              </label>
+              <input type='radio' name="size" id="size2" value="15x20" v-model="tempSize">
+              <label for="size2" class='input-area input-area--sizes'>
                 15 x 20
-              </button>
-              <button class='input-area' @click="setSize('20', '30')">
+              </label>
+              <input type='radio' name="size" id="size3" value="20x30" v-model="tempSize">
+              <label for="size3" class='input-area input-area--sizes'>
                 20 x 30
-              </button>
-              <button class='input-area' @click="setSize('30', '40')">
+              </label>
+              <input type='radio' name="size" id="size4" value="30x40" v-model="tempSize">
+              <label for="size4" class='input-area input-area--sizes'>
                 30 x 40
-              </button>
-              <button class='input-area' @click="setSize('30', '90')">
+              </label>
+              <input type='radio' name="size" id="size5" value="30x90" v-model="tempSize">
+              <label for="size5" class='input-area input-area--sizes'>
                 30 x 90
-              </button>
+              </label>
             </div>
             <router-link class="btn" :to="{ name: 'frame', params: { width: width, height: height } }">Proceed</router-link>
           </div>
@@ -57,13 +62,15 @@
     data () {
       return {
         width: '',
-        height: ''
+        height: '',
+        tempSize: ''
       }
     },
-    methods: {
-      setSize (w, h) {
-        this.width = w
-        this.height = h
+    computed: {
+      setSize () {
+        let sizes = this.tempSize.split('x')
+        this.width = sizes[0]
+        this.height = sizes[1]
       }
     }
   }
@@ -94,7 +101,6 @@
   }
 
   .card {
-    position: relative;
     height: 380px;
     text-decoration: none;
     color: inherit;
@@ -125,10 +131,12 @@
 
   .card__front {
     z-index: 2;
+    transform: rotateY(0deg);
   }
 
   .card__back {
     transform: rotateY(180deg);
+    background-color: #fff;
   }
 
   .card:hover .card__content {
@@ -147,6 +155,20 @@
     background-color: #eee;
     border-radius: 3px;
     border: 2px solid #eee;
+  }
+
+  .input-area--sizes {
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+
+  .card__back input[type="radio"] {
+    display: none;
+  }
+
+  .card__back input[type='radio']:checked + .input-area {
+    border: 2px solid #57ad68;
   }
 
   .input-area input:focus {
@@ -177,7 +199,8 @@
     margin-bottom: 1em;
   }
 
-  .card__back button:focus {
+  .card__back button:focus,
+  .card__back button:active {
     outline: none;
     border: 2px solid #57ad68;
   }
