@@ -146,6 +146,7 @@
     justify-content: space-between;
     background-color: #eee;
     border-radius: 3px;
+    border: 2px solid #eee;
   }
 
   .input-area input:focus {
@@ -174,6 +175,11 @@
 
   .card__back .input-area {
     margin-bottom: 1em;
+  }
+
+  .card__back button:focus {
+    outline: none;
+    border: 2px solid #57ad68;
   }
 
   @media screen and (min-width: 720px) {
