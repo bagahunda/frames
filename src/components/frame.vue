@@ -270,12 +270,6 @@ export default {
     align-items: center;
   }
 
-  .options__items {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
   .preview {
     margin: 0 auto;
     width: 300px;
@@ -393,6 +387,12 @@ export default {
 
   .options__header {
     margin: 0 0 30px;
+  }
+
+  .options__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .options__item {
