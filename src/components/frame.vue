@@ -53,62 +53,64 @@
       <div class='design-container__options options'>
         <div class='options__container'>
           <h2 class="options__header">Designing a frame for your {{width}}x{{height}}cm print</h2>
-          <div class='options__item'>
-            <h3>Choose the width of your frame</h3>
-            <div class='options__input'>
-              <input type='range' min="2" max="4" step="1" v-model="frameWidth" @input="frameWidthChanged">
-              <div class='frame-width-data'>
-                <span>2cm</span>
-                <span>3cm</span>
-                <span>4cm</span>
-              </div>
-            </div>
-          </div>
-          <div class='options__item'>
-            <h3>Would you like a mat?</h3>
-            no
-            <toggle-button v-model="useMat" @input="matShowed"/>
-            yes
-          </div>
-          <div class='options__item mat' v-if="useMat">
-            <div class='mat__item'>
-              <span>color</span>
-              <div class='mat-checkbox'>
-                <input type='radio' id="matWhite" v-model="matColor" value="previewMat--white">
-                <label for='matWhite'></label>
-              </div>
-              <div class='mat-checkbox'>
-                <input type='radio' id="matBlack" v-model="matColor" value="previewMat--black">
-                <label class="black" for='matBlack'></label>
-              </div>
-            </div>
-            <div class='mat__item'>
-              <span>width</span>
-              <div class='options-input'>
-                <input type='range' min="3" max="9" step="2" v-model="matWidth" @input="matWidthChanged">
-                <div class='mat-data'>
+          <div class='options__items'>
+            <div class='options__item'>
+              <h3>Choose the width of your frame</h3>
+              <div class='options__input'>
+                <input type='range' min="2" max="4" step="1" v-model="frameWidth" @input="frameWidthChanged">
+                <div class='frame-width-data'>
+                  <span>2cm</span>
                   <span>3cm</span>
-                  <span>5cm</span>
-                  <span>7cm</span>
-                  <span>9cm</span>
+                  <span>4cm</span>
                 </div>
               </div>
             </div>
-          </div>
-          <div class='options__item'>
-            <h3>Which type of glazing?</h3>
-            <div class='options-input'>
-              <input type='range' min="10" max="30" step="10" v-model="glazing" @change="glazingChanged">
-              <div class='glazing-data'>
-                <span>standard</span>
-                <span>uv70</span>
-                <span>uv99</span>
+            <div class='options__item'>
+              <h3>Would you like a mat?</h3>
+              no
+              <toggle-button v-model="useMat" @input="matShowed"/>
+              yes
+            </div>
+            <div class='options__item mat' v-if="useMat">
+              <div class='mat__item'>
+                <span>color</span>
+                <div class='mat-checkbox'>
+                  <input type='radio' id="matWhite" v-model="matColor" value="previewMat--white">
+                  <label for='matWhite'></label>
+                </div>
+                <div class='mat-checkbox'>
+                  <input type='radio' id="matBlack" v-model="matColor" value="previewMat--black">
+                  <label class="black" for='matBlack'></label>
+                </div>
+              </div>
+              <div class='mat__item'>
+                <span>width</span>
+                <div class='options-input'>
+                  <input type='range' min="3" max="9" step="2" v-model="matWidth" @input="matWidthChanged">
+                  <div class='mat-data'>
+                    <span>3cm</span>
+                    <span>5cm</span>
+                    <span>7cm</span>
+                    <span>9cm</span>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-          <div class='options__item price'>
-            <span>{{totalPrice | currency}}</span>
-            <button class='btn' type="button">buy</button>
+            <div class='options__item'>
+              <h3>Which type of glazing?</h3>
+              <div class='options-input'>
+                <input type='range' min="10" max="30" step="10" v-model="glazing" @change="glazingChanged">
+                <div class='glazing-data'>
+                  <span>standard</span>
+                  <span>uv70</span>
+                  <span>uv99</span>
+                </div>
+              </div>
+            </div>
+            <div class='options__item price'>
+              <span>{{totalPrice | currency}}</span>
+              <button class='btn' type="button">buy</button>
+            </div>
           </div>
         </div>
       </div>
@@ -263,6 +265,12 @@ export default {
 
   .design-container__options {
     padding-left: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .options__items {
     display: flex;
     flex-direction: column;
     align-items: center;
