@@ -42,11 +42,11 @@
           <div class='options__item'>
             <h3>Choose the width of your frame</h3>
             <div class='options__input'>
-              <input type='range' min="3" max="7" step="2" v-model="frameWidth" @input="frameWidthChanged">
+              <input type='range' min="2" max="4" step="1" v-model="frameWidth" @input="frameWidthChanged">
               <div class='frame-width-data'>
+                <span>2cm</span>
                 <span>3cm</span>
-                <span>5cm</span>
-                <span>7cm</span>
+                <span>4cm</span>
               </div>
             </div>
           </div>
@@ -117,7 +117,7 @@ export default {
   },
   data () {
     return {
-      frameWidth: '3',
+      frameWidth: '2',
       // bg: 'url(http://fillmurray.com/300/400)',
       bg: '',
       useMat: false,
@@ -136,13 +136,13 @@ export default {
   methods: {
     frameWidthChanged (event) {
       let val = event.target.value
-      if (val === '3') {
+      if (val === '2') {
         this.framePrice = 0
       }
-      if (val === '5') {
+      if (val === '3') {
         this.framePrice = 4
       }
-      if (val === '7') {
+      if (val === '4') {
         this.framePrice = 7
       }
     },
@@ -273,16 +273,16 @@ export default {
     border-image: url('../assets/wood--cream.jpg') 200 stretch;
   }
 
+  .preview--2 {
+    border-width: 20px;
+  }
+
   .preview--3 {
     border-width: 30px;
   }
 
-  .preview--5 {
-    border-width: 50px;
-  }
-
-  .preview--7 {
-    border-width: 70px;
+  .preview--4 {
+    border-width: 40px;
   }
 
   .previewMat--3 {
