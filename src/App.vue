@@ -27,6 +27,21 @@ export default {
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
-    margin-top: 60px;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 0 30px;
+    appearance: none;
+    background-color: #57ad68;
+    color: #ffffff;
+    border: none;
+    outline: none;
+    text-transform: uppercase;
+    line-height: 40px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 18px;
+    text-decoration: none;
   }
 </style>
