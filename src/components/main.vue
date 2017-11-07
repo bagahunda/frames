@@ -95,7 +95,7 @@
 
   .card {
     position: relative;
-    height: 340px;
+    height: 380px;
     text-decoration: none;
     color: inherit;
     margin-bottom: 1em;
