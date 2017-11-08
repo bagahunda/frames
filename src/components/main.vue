@@ -82,7 +82,7 @@
 <style>
   .home {
     padding: 1em 0;
-    height: 100%;
+    height: 1px;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -146,6 +146,7 @@
   }
 
   .input-area {
+    width: 100%;
     padding: 15px 25px;
     display: flex;
     flex-wrap: wrap;
@@ -156,6 +157,7 @@
   }
 
   .input-area--sizes {
+    width: auto;
     padding: 10px 20px;
     font-size: 14px;
     cursor: pointer;
@@ -204,6 +206,7 @@
   }
 
   @media screen and (min-width: 720px) {
+
     .frame-select-home {
       flex-direction: row;
     }
@@ -211,6 +214,12 @@
     .card {
       margin-bottom: 0;
       width: calc((100% - 20px)/2);
+    }
+  }
+
+  @media screen and (max-width: 720px) and (max-height: 870px) {
+    .home {
+      height: auto;
     }
   }
 
