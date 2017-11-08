@@ -105,6 +105,8 @@
     text-decoration: none;
     color: inherit;
     margin-bottom: 1em;
+    perspective: 1000;
+    transform-style: preserve-3d;
   }
 
   .card__content {
@@ -114,7 +116,7 @@
     padding: 1em;
     border-radius: 5px;
     transform-style: preserve-3d;
-    perspective: 1000;
+    transition: 0.6s;
   }
 
   .card__front, .card__back {
@@ -139,11 +141,11 @@
     background-color: #fff;
   }
 
-  .card:hover .card__back {
+  .card__content:hover .card__back {
     transform: rotateY(0deg);
   }
 
-  .card:hover .card__front {
+  .card__content:hover .card__front {
     transform: rotateY(180deg);
   }
 
