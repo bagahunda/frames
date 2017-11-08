@@ -105,7 +105,7 @@
   }
 
   .card {
-    height: 380px;
+    height: 350px;
     text-decoration: none;
     color: inherit;
     margin-bottom: 1em;
@@ -129,6 +129,10 @@
     height: 100%;
     padding: 1em;
     transition: 0.6s;
+  }
+
+  .card__front h2 {
+    margin: 0;
   }
 
   .card__back {
