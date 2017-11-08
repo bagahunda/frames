@@ -105,7 +105,7 @@
     text-decoration: none;
     color: inherit;
     margin-bottom: 1em;
-    perspective: 1000;
+    perspective: 1000px;
     transform-style: preserve-3d;
   }
 
@@ -127,6 +127,7 @@
     height: 100%;
     padding: 1em;
     backface-visibility: hidden;
+    transform-style: preserve-3d;
     box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1);
     transition: 0.6s;
   }
@@ -138,14 +139,13 @@
 
   .card__back {
     transform: rotateY(-180deg);
-    background-color: #fff;
   }
 
-  .card__content:hover .card__back {
+  .card:hover .card__back {
     transform: rotateY(0deg);
   }
 
-  .card__content:hover .card__front {
+  .card:hover .card__front {
     transform: rotateY(180deg);
   }
 
