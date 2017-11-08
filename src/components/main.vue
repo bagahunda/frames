@@ -105,7 +105,6 @@
     text-decoration: none;
     color: inherit;
     margin-bottom: 1em;
-    perspective: 1000;
   }
 
   .card__content {
@@ -114,9 +113,8 @@
     height: 100%;
     padding: 1em;
     border-radius: 5px;
-    box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1);
-    transition: 0.6s;
     transform-style: preserve-3d;
+    perspective: 1000;
   }
 
   .card__front, .card__back {
@@ -127,6 +125,8 @@
     height: 100%;
     padding: 1em;
     backface-visibility: hidden;
+    box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1);
+    transition: 0.6s;
   }
 
   .card__front {
@@ -135,11 +135,15 @@
   }
 
   .card__back {
-    transform: rotateY(180deg);
+    transform: rotateY(-180deg);
     background-color: #fff;
   }
 
-  .card:hover .card__content {
+  .card:hover .card__back {
+    transform: rotateY(0deg);
+  }
+
+  .card:hover .card__front {
     transform: rotateY(180deg);
   }
 
