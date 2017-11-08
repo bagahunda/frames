@@ -1,56 +1,58 @@
 <template>
   <div class='home'>
-    <h1>Let's get started</h1>
-    <div class='frame-select-home'>
-        <div class='card card--flip'>
-          <div class='card__content'>
-            <div class='card__front'>
-              <img src='../assets/Custom-frame.svg' alt=''>
-              <h2>Create a custom frame</h2>
-            </div>
-            <div class='card__back'>
-              <div class='frame-select__data'>
-                <p>Measure the width and height of the artwork you'd like to frame, and provide both dimensions below.</p>
-                <div class='input-area'>
-                  <input type='text' placeholder="Width" v-model="width">
-                  <input type='text' placeholder="Height" v-model="height">
-                  <router-link class="btn" :to="{ name: 'frame', params: { width: width, height: height } }">Proceed</router-link>
+    <div class='home__content'>
+      <h1>Let's get started</h1>
+      <div class='frame-select-home'>
+          <div class='card card--flip'>
+            <div class='card__content'>
+              <div class='card__front'>
+                <img src='../assets/Custom-frame.svg' alt=''>
+                <h2>Create a custom frame</h2>
+              </div>
+              <div class='card__back'>
+                <div class='frame-select__data'>
+                  <p>Measure the width and height of the artwork you'd like to frame, and provide both dimensions below.</p>
+                  <div class='input-area'>
+                    <input type='text' placeholder="Width" v-model="width">
+                    <input type='text' placeholder="Height" v-model="height">
+                    <router-link class="btn" :to="{ name: 'frame', params: { width: width, height: height } }">Proceed</router-link>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      <div class='card card--flip'>
-        <div class='card__content'>
-          <div class='card__front'>
-            <img src='../assets/Upload-photo.svg' alt=''>
-            <h2>Choose from a standard sizes</h2>
-          </div>
-          <div class='card__back'>
-            <div class='frame-select__data'>
-              <input type='radio' name="size" id="size1" value="10x15" v-model="tempSize">
-              <label for="size1" class='input-area input-area--sizes'>
-                10 x 15
-              </label>
-              <input type='radio' name="size" id="size2" value="15x20" v-model="tempSize">
-              <label for="size2" class='input-area input-area--sizes'>
-                15 x 20
-              </label>
-              <input type='radio' name="size" id="size3" value="20x30" v-model="tempSize">
-              <label for="size3" class='input-area input-area--sizes'>
-                20 x 30
-              </label>
-              <input type='radio' name="size" id="size4" value="30x40" v-model="tempSize">
-              <label for="size4" class='input-area input-area--sizes'>
-                30 x 40
-              </label>
-              <input type='radio' name="size" id="size5" value="30x90" v-model="tempSize">
-              <label for="size5" class='input-area input-area--sizes'>
-                30 x 90
-              </label>
-              <div class='hidden'>{{setSize}}</div>
+        <div class='card card--flip'>
+          <div class='card__content'>
+            <div class='card__front'>
+              <img src='../assets/Upload-photo.svg' alt=''>
+              <h2>Choose from a standard sizes</h2>
             </div>
-            <router-link class="btn" :to="{ name: 'frame', params: { width: width, height: height } }">Proceed</router-link>
+            <div class='card__back'>
+              <div class='frame-select__data'>
+                <input type='radio' name="size" id="size1" value="10x15" v-model="tempSize">
+                <label for="size1" class='input-area input-area--sizes'>
+                  10 x 15
+                </label>
+                <input type='radio' name="size" id="size2" value="15x20" v-model="tempSize">
+                <label for="size2" class='input-area input-area--sizes'>
+                  15 x 20
+                </label>
+                <input type='radio' name="size" id="size3" value="20x30" v-model="tempSize">
+                <label for="size3" class='input-area input-area--sizes'>
+                  20 x 30
+                </label>
+                <input type='radio' name="size" id="size4" value="30x40" v-model="tempSize">
+                <label for="size4" class='input-area input-area--sizes'>
+                  30 x 40
+                </label>
+                <input type='radio' name="size" id="size5" value="30x90" v-model="tempSize">
+                <label for="size5" class='input-area input-area--sizes'>
+                  30 x 90
+                </label>
+                <div class='hidden'>{{setSize}}</div>
+              </div>
+              <router-link class="btn" :to="{ name: 'frame', params: { width: width, height: height } }">Proceed</router-link>
+            </div>
           </div>
         </div>
       </div>
@@ -84,7 +86,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: stretch;
   }
 
   .home h1 {
