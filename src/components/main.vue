@@ -48,6 +48,7 @@
               <label for="size5" class='input-area input-area--sizes'>
                 30 x 90
               </label>
+              <div class='hidden'>{{setSize}}</div>
             </div>
             <router-link class="btn" :to="{ name: 'frame', params: { width: width, height: height } }">Proceed</router-link>
           </div>
@@ -105,8 +106,8 @@
     text-decoration: none;
     color: inherit;
     margin-bottom: 1em;
-    perspective: 1000px;
-    transform-style: preserve-3d;
+    overflow: hidden;
+    box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1);
   }
 
   .card__content {
@@ -115,8 +116,6 @@
     height: 100%;
     padding: 1em;
     border-radius: 5px;
-    transform-style: preserve-3d;
-    transition: 0.6s;
   }
 
   .card__front, .card__back {
@@ -126,27 +125,17 @@
     width: 100%;
     height: 100%;
     padding: 1em;
-    backface-visibility: hidden;
-    transform-style: preserve-3d;
-    box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1);
     transition: 0.6s;
   }
 
-  .card__front {
-    z-index: 2;
-    transform: rotateY(0deg);
-  }
-
   .card__back {
-    transform: rotateY(-180deg);
+    transform: translateY(-100%);
+    background-color: #fff;
+    z-index: 2;
   }
 
   .card:hover .card__back {
-    transform: rotateY(0deg);
-  }
-
-  .card:hover .card__front {
-    transform: rotateY(180deg);
+    transform: translateY(0);
   }
 
   .frame-select-home img {
