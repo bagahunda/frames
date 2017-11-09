@@ -16,7 +16,7 @@
     </div>
     <div class='design-container'>
       <div class='design-container__preview'>
-        <div :class="[{'preview--mat': hasMat}, matClass, matColor, previewClass, frameWidthClass, matWidthClass, frameClass]" :style="{width: width * 10 + 'px', height: height * 10 + 'px'}">
+        <div :class="[{'preview--mat': hasMat}, matClass, matColor, previewClass, frameClass]" :style="{borderWidth: borderWidth + 'px', padding: paddings + 'px', height: customHeight + 'px'}">
           <div class='preview__image' :style="{ 'background-image': bg }" @click="onPickFile"></div>
           <input type='file' ref='fileInput' accept='image/*' @change='onFilePicked'>
         </div>
@@ -140,6 +140,9 @@ export default {
       matWidth: '3',
       glazing: '10',
       previewClass: 'preview',
+      borderWidth: '20',
+      paddings: '0',
+      customHeight: Math.round(150 * (this.height / this.width)),
       frameClass: 'preview--black',
       matClass: 'previewMat--white',
       hasMat: false,
@@ -147,6 +150,13 @@ export default {
       startPrice: 55,
       framePrice: 0,
       matPrice: 0
+    }
+  },
+  created () {
+    let scale = (this.frameWidth * 100) / this.width
+    this.borderWidth = Math.round(1.5 * scale)
+    if (this.useMat) {
+      this.paddings = Math.round(1.5 * scale)
     }
   },
   methods: {
@@ -161,6 +171,11 @@ export default {
       if (val === '4') {
         this.framePrice = 7
       }
+      this.newFrameWidth()
+    },
+    newFrameWidth () {
+      let scale = (this.frameWidth * 100) / this.width
+      this.borderWidth = Math.round(1.5 * scale)
     },
     matWidthChanged (event) {
       let val = event.target.value
@@ -176,6 +191,11 @@ export default {
       if (val === '9') {
         this.matPrice = 29
       }
+      this.newMatWidth()
+    },
+    newMatWidth () {
+      let scale = (this.matWidth * 100) / this.width
+      this.paddings = Math.round(1.5 * scale)
     },
     matShowed () {
       if (this.useMat === true) {
@@ -191,8 +211,10 @@ export default {
         if (this.matWidth === '9') {
           this.matPrice = 29
         }
+        this.newMatWidth()
       } else {
         this.matPrice = 0
+        this.paddings = '0'
       }
     },
     glazingChanged (event) {
@@ -216,7 +238,9 @@ export default {
   },
   computed: {
     frameWidthClass () {
-      return 'preview--' + this.frameWidth
+      let scale = (this.frameWidth * 100) / this.width
+      this.borderWidth = 2 * scale
+      // return 'preview--' + this.frameWidth
     },
     matWidthClass () {
       if (this.useMat) {
@@ -261,6 +285,8 @@ export default {
 
   .design-container__preview {
     margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
   }
 
   .design-container__options {
@@ -271,9 +297,9 @@ export default {
   }
 
   .preview {
-    margin: 0 auto;
-    width: 300px;
-    height: 400px;
+    margin: 0 auto 1em;
+    width: 150px;
+    height: 300px;
     border: #2e1a12 solid 8px;
     // border-image: url('../assets/wood.png') 200 stretch;
     box-shadow: inset 0px 0px 10px rgba(0,0,0,1);
@@ -349,7 +375,7 @@ export default {
   }
 
   .frame-select {
-    margin-top: 1em;
+    margin-top: auto;
     text-align: center;
   }
 

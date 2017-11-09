@@ -117,7 +117,6 @@
     position: relative;
     width: 100%;
     height: 100%;
-    padding: 1em;
     border-radius: 5px;
   }
 
@@ -129,6 +128,12 @@
     height: 100%;
     padding: 1em;
     transition: 0.6s;
+  }
+
+  .card__front {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .card__front h2 {
