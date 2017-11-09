@@ -14,9 +14,9 @@
         Back to start
       </router-link>
     </div>
-    <div class='design-container'>
-      <div class='design-container__preview'>
-        <div :class="[{'preview--mat': hasMat}, matClass, matColor, previewClass, frameClass]" :style="{borderWidth: borderWidth + 'px', padding: paddings + 'px', height: customHeight + 'px'}">
+    <div class='container design-container'>
+      <div class='design-container__preview' ref="previewContainer">
+        <div :class="[{'preview--mat': hasMat}, matClass, matColor, previewClass, frameClass]" :style="{borderWidth: borderWidth + 'px', padding: paddings + 'px', width: baseWidth * 100 + 'px', height: customHeight + 'px'}" ref="preview">
           <div class='preview__image' :style="{ 'background-image': bg }" @click="onPickFile"></div>
           <input type='file' ref='fileInput' accept='image/*' @change='onFilePicked'>
         </div>
@@ -134,7 +134,7 @@ export default {
   data () {
     return {
       frameWidth: '2',
-      // bg: 'url(http://fillmurray.com/300/400)',
+      baseWidth: 2,
       bg: '',
       useMat: false,
       matWidth: '3',
@@ -142,24 +142,44 @@ export default {
       previewClass: 'preview',
       borderWidth: '20',
       paddings: '0',
-      customHeight: Math.round(150 * (this.height / this.width)),
+      customHeight: 0,
       frameClass: 'preview--black',
       matClass: 'previewMat--white',
       hasMat: false,
       matColor: 'previewMat--white',
       startPrice: 55,
       framePrice: 0,
-      matPrice: 0
+      matPrice: 0,
+      previewContainer: 0
     }
   },
-  created () {
+  mounted () {
+    this.customHeight = Math.round((this.baseWidth * 100) * (this.height / this.width))
+    this.previewContainer = this.$refs.previewContainer.offsetWidth * 1
+    this.setSize()
     let scale = (this.frameWidth * 100) / this.width
-    this.borderWidth = Math.round(1.5 * scale)
+    this.borderWidth = Math.round(this.baseWidth * scale)
     if (this.useMat) {
-      this.paddings = Math.round(1.5 * scale)
+      this.paddings = Math.round(this.baseWidth * scale)
     }
   },
   methods: {
+    setSize () {
+      let w = this.$refs.preview.offsetWidth
+      let borderScale = Math.round(400 / this.width)
+      let maxBorder = Math.round(this.baseWidth * borderScale) * 2
+      let paddingsScale = Math.round(900 / this.width)
+      let maxPaddings = Math.round(this.baseWidth * paddingsScale) * 2
+      w += maxBorder
+      w += maxPaddings
+      if (w > this.previewContainer - 20) {
+        let scaledBorder = (this.frameWidth * 100) / this.width
+        let scaledPaddings = (this.matWidth * 100) / this.width
+        let correct = ((this.previewContainer - 40) / (scaledBorder + scaledPaddings + 1) / 10)
+        this.baseWidth = correct
+        this.customHeight = Math.round((this.baseWidth * 100) * (this.height / this.width))
+      }
+    },
     frameWidthChanged (event) {
       let val = event.target.value
       if (val === '2') {
@@ -175,7 +195,7 @@ export default {
     },
     newFrameWidth () {
       let scale = (this.frameWidth * 100) / this.width
-      this.borderWidth = Math.round(1.5 * scale)
+      this.borderWidth = Math.round(this.baseWidth * scale)
     },
     matWidthChanged (event) {
       let val = event.target.value
@@ -195,7 +215,7 @@ export default {
     },
     newMatWidth () {
       let scale = (this.matWidth * 100) / this.width
-      this.paddings = Math.round(1.5 * scale)
+      this.paddings = Math.round(this.baseWidth * scale)
     },
     matShowed () {
       if (this.useMat === true) {
@@ -225,10 +245,6 @@ export default {
     },
     onFilePicked (event) {
       const files = event.target.files
-      // let fileName = files[0].filename
-      // if (fileName.lastIndexOf('.') <= 0) {
-      //   return alert('Please choose a valid image!')
-      // }
       const fileReader = new FileReader()
       fileReader.addEventListener('load', () => {
         this.bg = 'url(' + fileReader.result + ')'
@@ -237,16 +253,6 @@ export default {
     }
   },
   computed: {
-    frameWidthClass () {
-      let scale = (this.frameWidth * 100) / this.width
-      this.borderWidth = 2 * scale
-      // return 'preview--' + this.frameWidth
-    },
-    matWidthClass () {
-      if (this.useMat) {
-        return 'previewMat--' + this.matWidth
-      }
-    },
     totalPrice () {
       return this.startPrice + this.framePrice + this.matPrice
     }
@@ -270,9 +276,6 @@ export default {
   }
 
   .design-container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 60px auto 0;
     display: flex;
     flex-wrap: wrap;
   }
@@ -291,6 +294,7 @@ export default {
 
   .design-container__options {
     padding-left: 40px;
+    padding-right: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -298,7 +302,7 @@ export default {
 
   .preview {
     margin: 0 auto 1em;
-    width: 150px;
+    width: 200px;
     height: 300px;
     border: #2e1a12 solid 8px;
     // border-image: url('../assets/wood.png') 200 stretch;
@@ -524,21 +528,23 @@ export default {
     .design-container__options {
       box-sizing: border-box;
       width: 100%;
-      padding: 0 20px;
     }
 
     .design-container__options {
       margin-top: 20px;
+      padding: 0 20px;
     }
 
     .frames-container {
       width: 100%;
       max-width: 380px;
+      padding: 0 20px;
     }
 
     .frames-container label {
       width: 40px;
       height: 40px;
+      margin: 0 auto;
     }
 
     .frame-checkbox {

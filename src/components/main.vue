@@ -3,7 +3,7 @@
     <div class='home__content'>
       <h1>Let's get started</h1>
       <div class='frame-select-home'>
-          <div class='card card--flip'>
+          <div class='card'>
             <div class='card__content'>
               <div class='card__front'>
                 <img src='../assets/Custom-frame.svg' alt=''>
@@ -21,7 +21,7 @@
               </div>
             </div>
           </div>
-        <div class='card card--flip'>
+        <div class='card'>
           <div class='card__content'>
             <div class='card__front'>
               <img src='../assets/Upload-photo.svg' alt=''>
