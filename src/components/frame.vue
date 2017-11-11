@@ -16,7 +16,7 @@
     </div>
     <div class='container design-container'>
       <div class='design-container__preview' ref="previewContainer">
-        <div :class="[{'preview--mat': hasMat}, matClass, matColor, previewClass, frameClass]" :style="{borderWidth: borderWidth + 'px', padding: paddings + 'px', width: baseWidth * 100 + 'px', height: customHeight + 'px'}" ref="preview">
+        <div :class="[{'preview--mat': hasMat}, matClass, matColor, previewClass, frameClass]" :style="{borderWidth: borderWidth + 'px', padding: paddings + 'px', width: baseWidth + 'px', height: customHeight + 'px'}" ref="preview">
           <div class='preview__image' :style="{ 'background-image': bg }" @click="onPickFile"></div>
           <input type='file' ref='fileInput' accept='image/*' @change='onFilePicked'>
         </div>
@@ -154,10 +154,9 @@ export default {
     }
   },
   mounted () {
-    this.customHeight = Math.round((this.baseWidth * 100) * (this.height / this.width))
     this.previewContainer = this.$refs.previewContainer.offsetWidth * 1
     this.setSize()
-    let scale = (this.frameWidth * 100) / this.width
+    let scale = (this.frameWidth) / this.width
     this.borderWidth = Math.round(this.baseWidth * scale)
     if (this.useMat) {
       this.paddings = Math.round(this.baseWidth * scale)
@@ -165,20 +164,11 @@ export default {
   },
   methods: {
     setSize () {
-      let w = this.$refs.preview.offsetWidth
-      let borderScale = Math.round(400 / this.width)
-      let maxBorder = Math.round(this.baseWidth * borderScale) * 2
-      let paddingsScale = Math.round(900 / this.width)
-      let maxPaddings = Math.round(this.baseWidth * paddingsScale) * 2
-      w += maxBorder
-      w += maxPaddings
-      if (w > this.previewContainer - 20) {
-        let scaledBorder = (this.frameWidth * 100) / this.width
-        let scaledPaddings = (this.matWidth * 100) / this.width
-        let correct = ((this.previewContainer - 40) / (scaledBorder + scaledPaddings + 1) / 10)
-        this.baseWidth = correct
-        this.customHeight = Math.round((this.baseWidth * 100) * (this.height / this.width))
-      }
+      let borderScale = 4 / this.width
+      let paddingsScale = 9 / this.width
+      let correct = (this.previewContainer - 40) / (borderScale * 2 + paddingsScale * 2 + 1)
+      this.baseWidth = Math.round(correct)
+      this.customHeight = Math.round((this.baseWidth) * (this.height / this.width))
     },
     frameWidthChanged (event) {
       let val = event.target.value
@@ -194,7 +184,7 @@ export default {
       this.newFrameWidth()
     },
     newFrameWidth () {
-      let scale = (this.frameWidth * 100) / this.width
+      let scale = (this.frameWidth) / this.width
       this.borderWidth = Math.round(this.baseWidth * scale)
     },
     matWidthChanged (event) {
@@ -214,7 +204,7 @@ export default {
       this.newMatWidth()
     },
     newMatWidth () {
-      let scale = (this.matWidth * 100) / this.width
+      let scale = (this.matWidth) / this.width
       this.paddings = Math.round(this.baseWidth * scale)
     },
     matShowed () {
