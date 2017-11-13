@@ -57,7 +57,7 @@
             <div class='options__item'>
               <h3>Choose the width of your frame</h3>
               <div class='options__input'>
-                <input type='range' min="2" max="4" step="1" v-model="frameWidth" @input="frameWidthChanged">
+                <input type='range' min="2" max="4" step="1" v-model="frameWidth" @change="frameWidthChanged">
                 <div class='frame-width-data'>
                   <span>2cm</span>
                   <span>3cm</span>
@@ -68,7 +68,7 @@
             <div class='options__item'>
               <h3>Would you like a mat?</h3>
               no
-              <toggle-button v-model="useMat" @input="matShowed"/>
+              <toggle-button v-model="useMat" @change="matShowed"/>
               yes
             </div>
             <div class='options__item mat' v-if="useMat">
