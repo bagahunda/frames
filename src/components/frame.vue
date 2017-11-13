@@ -461,6 +461,10 @@ export default {
     align-items: center;
   }
 
+  .mat__item:not(:first-child) {
+    margin-top: 1em;
+  }
+
   .mat__item span {
     margin-right: 1em;
   }
